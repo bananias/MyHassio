@@ -1,0 +1,13 @@
+- platform: darksky
+  name: "Gosselies"
+  mode: daily
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  api_key: !secret dark_sky_api_key
+
+- platform: darksky
+  name: "Bruxelles"
+  mode: daily
+  latitude: !secret work_lat
+  longitude: !secret work_long
+  api_key: !secret dark_sky_api_key

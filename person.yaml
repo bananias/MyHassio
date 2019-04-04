@@ -1,0 +1,19 @@
+  - name: David
+    id: david
+    device_trackers:
+      - device_tracker.david
+
+  - name: Adrien
+    id: adrien
+    device_trackers:
+      - device_tracker.adrien
+
+  - name: Lise
+    id: lise
+    device_trackers:
+      - device_tracker.lise
+
+  - name: Christine
+    id: christine
+    device_trackers:
+      - device_tracker.christine

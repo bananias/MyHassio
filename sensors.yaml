@@ -1,0 +1,254 @@
+- platform: buienradar
+  name: "meteox"
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  monitored_conditions:
+    - condition
+    - conditionexact
+    - humidity
+    - temperature
+    - groundtemperature
+    - windspeed
+    - winddirection
+    - pressure
+    - precipitation
+    - precipitation_forecast_average
+    - precipitation_forecast_total
+    - temperature_1d
+    - temperature_2d
+    - temperature_3d
+    - temperature_4d
+    - temperature_5d
+    - mintemp_1d
+    - condition_1d
+    - conditionexact_1d
+    - conditionexact_2d
+    - conditionexact_3d
+    - conditionexact_4d
+    - conditionexact_5d
+    - rainchance_1d
+    - rainchance_2d
+    - rainchance_3d
+    - rainchance_4d
+    - rainchance_5d
+    - rain_1d
+    - rain_2d
+    - rain_3d
+    - rain_4d
+    - rain_5d
+
+- platform: darksky
+  name: "Meteo Gosselies"
+  language: "fr"
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  api_key: !secret dark_sky_api_key
+  forecast:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  monitored_conditions:
+    - icon
+    - summary
+    - precip_type
+    - precip_intensity
+    - precip_intensity_max
+    - precip_probability
+    - temperature
+#    - apparent_temperature
+    - wind_speed
+#    - wind_bearing
+    - cloud_cover
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+    - humidity
+    - temperature_high
+    - temperature_low
+    - precip_accumulation
+    - sunrise_time
+    - sunset_time
+    - uv_index
+#    - pressure
+#    - visibility
+  scan_interval:
+    minutes: 30
+
+- platform: darksky
+  name: "Meteo Bruxelles"
+  language: "fr"
+  latitude: !secret work_lat
+  longitude: !secret work_long
+  api_key: !secret dark_sky_api_key
+  forecast:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  monitored_conditions:
+    - icon
+    - summary
+    - precip_type
+    - precip_intensity
+    - precip_intensity_max
+    - precip_probability
+    - temperature
+#    - apparent_temperature
+    - wind_speed
+#    - wind_bearing
+    - cloud_cover
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+    - humidity
+    - temperature_high
+    - temperature_low
+    - precip_accumulation
+    - sunrise_time
+    - sunset_time
+    - uv_index
+#    - pressure
+#    - visibility
+  scan_interval:
+    minutes: 30
+
+- platform: nmbs
+  name: "Train Work"
+  station_from: "Luttre"
+  station_to: "Brussels-North"
+  station_live: "Luttre"
+  show_on_map: true
+  
+- platform: nmbs
+  name: "Train Home"
+  station_from: "Brussels-North"
+  station_to: "Luttre"
+  station_live: "Brussels-North"
+  show_on_map: true
+
+- platform: version  
+- platform: uptime
+- platform: systemmonitor
+  resources:
+    - type: 'disk_free'
+      arg: '/'
+    - type: 'disk_use'
+      arg: '/'
+    - type: 'memory_free'
+    - type: 'memory_use'
+    - type: 'processor_use'
+
+- platform: rpi_power
+- platform: dnsip
+- platform: moon
+- platform: season
+
+- platform: bitcoin
+  currency: 'EUR'
+  display_options:
+    - exchangerate
+    - trade_volume_btc
+
+- platform: mqtt
+  state_topic: "NodeMCU/adrien"
+  name: "Chambre Adrien Humidité"
+  unit_of_measurement: "%"
+  icon: mdi:water-percent
+  value_template: '{{ value_json.humidity | round(1) }}'
+    
+- platform: mqtt
+  state_topic: "NodeMCU/adrien"
+  name: "Présence chambre Adrien"
+  value_template: '{{ value_json.motion }}'
+  
+- platform: mqtt
+  state_topic: "NodeMCU/adrien"
+  name: "Chambre Adrien Température"
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.temperature | round(1) }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/adrien"
+  name: "Chambre Adrien Temperature Ressentie"
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.heatIndex | round(1) }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/lise/STATE"
+  name: "Lise Sensor Wifi"
+  unit_of_measurement: "dBm"
+  icon: mdi:access-point
+  value_template: '{{ value_json.Wifi.RSSI }}'
+  availability_topic: "NodeMCU/lise/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: mqtt
+  state_topic: "NodeMCU/lise/SENSOR"
+  name: "Lise Humidité"
+  unit_of_measurement: "%"
+  icon: mdi:water-percent
+  value_template: '{{ value_json.AM2301.Humidity }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/lise/SENSOR"
+  name: "Lise Température"
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.AM2301.Temperature }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/papa"
+  name: "Chambre Parents Humidité"
+  unit_of_measurement: "%"
+  icon: mdi:water-percent
+  value_template: '{{ value_json.humidity | round(1) }}'
+    
+- platform: mqtt
+  state_topic: "NodeMCU/papa"
+  name: "Présence chambre Parents"
+  value_template: '{{ value_json.motion }}'
+  
+- platform: mqtt
+  state_topic: "NodeMCU/papa"
+  name: "Chambre Parents Température"
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.temperature | round(1) }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/papa"
+  name: "Chambre Parents Température Ressentie"
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.heatIndex | round(1) }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/living/STATE"
+  name: "Living Sensor Wifi"
+  unit_of_measurement: "dBm"
+  icon: mdi:access-point
+  value_template: '{{ value_json.Wifi.RSSI }}'
+  availability_topic: "NodeMCU/living/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: mqtt
+  state_topic: "NodeMCU/living/SENSOR"
+  name: "Living Humidité"
+  unit_of_measurement: "%"
+  icon: mdi:water-percent
+  value_template: '{{ value_json.AM2301.Humidity }}'
+
+- platform: mqtt
+  state_topic: "NodeMCU/living/SENSOR"
+  name: "Living Température"
+  unit_of_measurement: "°C"
+  value_template: '{{ value_json.AM2301.Temperature }}'
+
+#- platform: gearbest
+#  currency: EUR
+#  items:
+#    - url: https://www.gearbest.com/smart-watches/pp_009928044572.html?wid=1349303
+#    - url: https://www.gearbest.com/access-control/pp_009984932110.html?wid=1433363
+#    - id: 1433363
