@@ -246,6 +246,67 @@
   unit_of_measurement: "°C"
   value_template: '{{ value_json.AM2301.Temperature }}'
 
+- platform: command_line
+  name: "RPI CPU Temperature"
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  # If errors occur, make sure configuration file is encoded as UTF-8
+  unit_of_measurement: "°C"
+  value_template: "{{ value | multiply(0.001) | round(1) }}"
+
+- platform: rest
+  name: crypto_eth_eur
+  resource: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH&tsyms=EUR
+  method: GET
+  value_template: '{{ value_json["ETH"]["EUR"]}}'
+  unit_of_measurement: EUR
+  scan_interval: 300
+
+- platform: mqtt
+  name: "Temperature Bureau"
+  state_topic: "tele/sensor_bureau/SENSOR"
+  value_template: "{{ value_json['AM2301'].Temperature }}"
+  unit_of_measurement: "°C"
+  availability_topic: "tele/sensor_bureau/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  device_class: temperature
+
+- platform: mqtt
+  name: "Humidité Bureau"
+  state_topic: "tele/sensor_bureau/SENSOR"
+  value_template: "{{ value_json['AM2301'].Humidity }}"
+  unit_of_measurement: "%"
+  availability_topic: "tele/sensor_bureau/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  device_class: humidity
+
+- platform: mqtt
+  name: "AirQ PM2.5"
+  state_topic: "tele/SDS011/SENSOR"
+  value_template: "{{ value_json['SDS0X1']['PM25'] }}"
+  unit_of_measurement: "µg/m³"
+
+- platform: mqtt
+  name: "AirQ PM10"
+  state_topic: "tele/SDS011/SENSOR"
+  value_template: "{{ value_json['SDS0X1'].PM10 }}"
+  unit_of_measurement: "µg/m³"
+
+- platform: mqtt
+  name: "Temp Ext"
+  state_topic: "tele/SDS011/SENSOR"
+  value_template: "{{ value_json['BMP280']['Temperature'] }}"
+  unit_of_measurement: "°C"
+  device_class: temperature
+
+- platform: mqtt
+  name: "Pression Ext"
+  state_topic: "tele/SDS011/SENSOR"
+  value_template: "{{ value_json['BMP280']['Pressure'] }}"
+  unit_of_measurement: "hPa"
+  device_class: pressure
+
 #- platform: gearbest
 #  currency: EUR
 #  items:

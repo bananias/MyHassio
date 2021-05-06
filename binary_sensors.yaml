@@ -1,6 +1,6 @@
 - platform: workday
-  country: 'BE'
-  
+  country: "BE"
+
 - platform: iss
   name: "Int Space Station"
   show_on_map: true
@@ -11,54 +11,89 @@
   scan_interval: 300
 
 - platform: ping
-  name: "YI Cam"
-  host: !secret host_yicam
+  name: "PI Zero"
+  host: !secret host_pi_zero
   scan_interval: 1800
 
 - platform: ping
   name: "GSM Cri"
-  host: !secret host_S4
-  scan_interval: 300
-  
+  host: !secret host_G4
+  count: 3
+  scan_interval: 60
+
 - platform: ping
   name: "GSM Adrien"
-  host: !secret host_G4
-  scan_interval: 300
-  
+  host: !secret host_G6
+  count: 3
+  scan_interval: 60
+
+- platform: ping
+  name: "GSM Lise"
+  host: !secret host_gsm_lise
+  count: 3
+  scan_interval: 60
+
+- platform: ping
+  name: "GSM David"
+  host: !secret host_S10
+  count: 3
+  scan_interval: 60
+
 - platform: ping
   name: "Tab Lise"
   host: !secret host_tab_lise
   scan_interval: 300
-  
+
+- platform: ping
+  name: "PC David"
+  host: !secret host_pc_bananias
+  scan_interval: 300
+
 - platform: ping
   name: "PC Adrien"
   host: !secret host_pc_adrien
   scan_interval: 300
 
 - platform: ping
+  name: "PC HP Portable"
+  host: !secret host_pc_portable
+  scan_interval: 300
+
+- platform: ping
   name: "PI Jeedom"
   host: !secret host_pi_jeedom
   scan_interval: 1800
-  
+
 - platform: ping
   name: "TV LG"
   host: !secret host_tv_lg
   scan_interval: 1800
-  
+
+- platform: ping
+  name: "IPTV"
+  host: !secret host_iptv
+  scan_interval: 1800
+
+- platform: ping
+  name: "Proximus Decoder"
+  host: !secret host_pxs
+  scan_interval: 300
+
+- platform: ping
+  name: "Devolo Wifi"
+  host: !secret host_devolo_wifi
+  scan_interval: 300
+
 - platform: ping
   name: "Cam Recorder"
   host: !secret host_cam_recorder
   scan_interval: 1800
-
+  
 - platform: mqtt
-  state_topic: "NodeMCU/living/POWER"
-  name: "Living Présence"
-#  value_template: '{{ value_json.POWER }}'
-
-- platform: mqtt
-  state_topic: "NodeMCU/lise/POWER"
-  name: "Lise Présence"
-
-- platform: mqtt
-  state_topic: "NodeMCU/adrien/POWER"
-  name: "Adrien Présence"
+  name: "Bureau Motion Sensor"
+  state_topic: "stat/sensor_bureau/POWER"
+  availability_topic: "tele/sensor_bureau/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  device_class: door
+  qos: 1

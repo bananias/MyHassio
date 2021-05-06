@@ -3,3 +3,16 @@ platform: rfxtrx
 devices:
   0b11000002cc940002000070:
     name: living
+
+- platform: mqtt
+  name: "Prise Bureau"
+  state_topic: "tele/Plug_bureau/STATE"
+  value_template: "{{ value_json.POWER }}"
+  command_topic: "cmd/Plug_bureau/POWER"
+  availability_topic: "tele/Plug_bureau/LWT"
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
