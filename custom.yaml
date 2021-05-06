@@ -1,0 +1,122 @@
+# MeteoX - Buinenradar
+  sensor.meteox_temperature:
+    unit_of_measurement: "°C"
+    friendly_name: "Température"
+  sensor.meteox_precipitation:
+    unit_of_measurement: "mm"
+    friendly_name: "Précipitation"
+  sensor.meteox_full_condition:
+    friendly_name: "Actuellement"
+  sensor.meteox_humidity:
+    unit_of_measurement: "%"
+    friendly_name: "Humidité"
+  sensor.meteox_wind_speed:
+    unit_of_measurement: "m/s"
+    friendly_name: "Vitesse du Vent"
+  sensor.meteox_wind_direction:
+    friendly_name: "Direction du Vent"
+  sensor.meteox_precipitation_forecast_average:
+    unit_of_measurement: "mm"
+    friendly_name: "Prévision de la moyenne des Précipitations"
+  sensor.meteox_precipitation_forecast_total:
+    unit_of_measurement: "mm"
+    friendly_name: "Prévision du total des Précipitations"
+  sensor.meteox_pressure:
+    friendly_name: "Pression"
+  sensor.meteox_minimum_temperature_1d:
+    friendly_name: "Prévision Température pour demain"
+  sensor.meteox_rainchance_1d:
+    friendly_name: "Risque de Précipitations pour demain"
+  sensor.meteox_rain_1d:
+    friendly_name: "Quantité de Précipitations pour demain"
+
+# Darksky
+  sensor.dark_sky_temperature:
+    friendly_name: "Température"
+  sensor.dark_sky_daily_summary:
+    friendly_name: "résumé du jour"
+  sensor.dark_sky_precip_probability:
+    friendly_name: "Probabilité de pluie"
+  sensor.dark_sky_wind_bearing:
+    friendly_name: "Direction du Vent"
+  sensor.dark_sky_cloud_coverage_1:
+    friendly_name: "Couverture Nuageuse"
+  sensor.dark_sky_daily_max_precip_intensity_1:
+    friendly_name: "Max Précipitations"
+  sensor.dark_sky_precip_1:
+    friendly_name: "Type de précipitation"
+  sensor.dark_sky_precip_intensity_1:
+    friendly_name: "Quantité de précipitation"
+  sensor.dark_sky_precip_probability_1:
+    friendly_name: "Probabilité"
+  sensor.dark_sky_wind_speed_1:
+    friendly_name: "Vitesse du Vent"
+
+# Motion Sensor
+  binary_sensor.living_presence:
+    device_class: motion
+  binary_sensor.lise_presence:
+    device_class: motion
+  binary_sensor.adrien_presence:
+    device_class: motion
+# PING
+
+  binary_sensor.ps4_host:
+    icon: mdi:sony-playstation
+  binary_sensor.yi_cam:
+    icon: mdi:webcam
+  binary_sensor.pi_jeedom:
+    icon: mdi:raspberry-pi
+  binary_sensor.gsm_cri:
+    icon: mdi:cellphone-android
+  binary_sensor.gsm_lise:
+    icon: mdi:cellphone-android
+  binary_sensor.gsm_adrien:
+    icon: mdi:cellphone-android
+  binary_sensor.gsm_david:
+    icon: mdi:cellphone-android
+  binary_sensor.tab_lise:
+    icon: mdi:tablet-android
+  binary_sensor.pc_adrien:
+    icon: mdi:desktop-tower
+  binary_sensor.pc_bananias:
+    icon: mdi:desktop-tower
+  binary_sensor.pc_portable:
+    icon: mdi:laptop-windows
+  binary_sensor.tv_lg:
+    icon: mdi:television
+  binary_sensor.cam_recorder:
+    icon: mdi:record-rec
+
+# Divers
+
+  sensor.myip:
+    friendly_name: "Public IP"
+    icon: mdi:ip
+  sensor.current_version:
+    icon: mdi:package-variant
+  sensor.uptime:
+    icon: mdi:heart-pulse
+  sensor.airq_pm10:
+    friendly_name: "AirQ PM10"
+    icon: mdi:air-filter
+  sensor.airq_pm2_5:
+    friendly_name: "AirQ PM2.5"
+    icon: mdi:air-filter
+  sensor.tasmota_bmp280_temperature:
+    friendly_name: "Température Extérieure"
+  sensor.tasmota_bmp280_pressure:
+    friendly_name: "Pression Extérieure"
+
+# Cryptos
+
+  sensor.coinbase_eth_wallet:
+    icon: mdi:ethereum
+  sensor.btc_exchange_rate:
+    friendly_name: "BTC Taux d'échange sur Coinbase"
+  sensor.eth_exchange_rate:
+    friendly_name: "ETH Taux d'échange sur Coinbase"
+  sensor.etc_exchange_rate:
+    friendly_name: "ETC Taux d'échange sur Coinbase"
+  sensor.zec_exchange_rate:
+    friendly_name: "ZEC Taux d'échange sur Coinbase"

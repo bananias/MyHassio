@@ -1,0 +1,61 @@
+- id: '1616237688533'
+  alias: Plug Off
+  description: Eteindre le plug dans la chambre d'Adrien a minuit
+  trigger:
+  - platform: time
+    at: 00:00
+  condition: []
+  action:
+  - type: turn_off
+    device_id: e0c622388322ca8b39da9f4dda1bd716
+    entity_id: switch.28426650bcddc2982ebb
+    domain: switch
+  mode: single
+- id: '1616282303871'
+  alias: Plug On
+  description: ''
+  trigger:
+  - platform: time
+    at: 09:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: e0c622388322ca8b39da9f4dda1bd716
+    entity_id: switch.28426650bcddc2982ebb
+    domain: switch
+  mode: single
+- id: '1617390039626'
+  alias: Bureau Light On auto
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bureau_motion_sensor
+    to: 'on'
+    for: 00:00:03
+  condition:
+  - condition: time
+    before: 06:45
+    after: '21:30'
+  action:
+  - type: turn_on
+    device_id: f67ecbe6b4d576ee4c29c9d17b21c601
+    entity_id: light.02805635e09806c52548
+    domain: light
+    brightness_pct: 80
+  mode: single
+- id: '1617402134908'
+  alias: Bureau Light OFF auto
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bureau_motion_sensor
+    to: 'off'
+    for: 0:00:30
+  condition: []
+  action:
+  - type: turn_off
+    device_id: f67ecbe6b4d576ee4c29c9d17b21c601
+    entity_id: light.02805635e09806c52548
+    domain: light
+  mode: single
+[]
